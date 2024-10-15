@@ -22,7 +22,7 @@ spring.jpa.hibernate.ddl-auto=update
 springdoc.swagger-ui.path=/swagger-ui.html
 ```
 
-### * Para usar Swagger: http://localhost:[puerto]/swagger-ui.html
+### * Para usar Swagger: `localhost:[puerto]/swagger-ui.html`
 
                               
 	
