@@ -9,9 +9,9 @@
 * Postman
 * Intellij
 
-### * Ejecutar los scripts en Mysql Workbench que dejé en resources 
+###  Ejecutar los scripts en Mysql Workbench que dejé en resources 
 
-### * Configurar application.properties con datos locales:
+###  Configurar application.properties con datos locales:
 
 ```
 server.port=[puerto]
@@ -22,7 +22,7 @@ spring.jpa.hibernate.ddl-auto=update
 springdoc.swagger-ui.path=/swagger-ui.html
 ```
 
-### * Para usar Swagger: `localhost:[puerto]/swagger-ui.html`
+###  Para usar Swagger: `localhost:[puerto]/swagger-ui.html`
 
                               
 	
