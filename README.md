@@ -21,7 +21,7 @@ spring.datasource.password=[passwordUsuarioMysql]
 spring.jpa.hibernate.ddl-auto=update
 springdoc.swagger-ui.path=/swagger-ui.html
 ```
-###  * [Frontend en este repositorio]([https://vuelos-mern.onrender.com/ ](https://github.com/Juanzor/Certant-Consultorio-Client))
+###  * [Frontend en este repositorio](https://github.com/Juanzor/Certant-Consultorio-Client)
 
 ###  Para usar Swagger: `localhost:[puerto]/swagger-ui.html`
 
