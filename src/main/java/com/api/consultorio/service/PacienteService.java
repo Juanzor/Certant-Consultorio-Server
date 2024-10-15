@@ -1,6 +1,7 @@
 package com.api.consultorio.service;
 
 import com.api.consultorio.dto.PacienteDto;
+import com.api.consultorio.dto.PacienteResponseDto;
 import com.api.consultorio.exceptions.ResourceNotFoundException;
 import com.api.consultorio.model.PacienteModel;
 import com.api.consultorio.repository.IPacienteRepository;
@@ -34,16 +35,16 @@ public class PacienteService {
         return pacienteRepository.existsById(id);
     }
 
-    public PacienteDto getPacienteById(Integer id) {
+    public PacienteResponseDto getPacienteById(Integer id) {
 
         PacienteModel pacienteModel = pacienteRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Paciente no encontrado"));
-        return modelMapper.map(pacienteModel, PacienteDto.class);
+        return modelMapper.map(pacienteModel, PacienteResponseDto.class);
     }
 
-    public PacienteDto createPaciente(PacienteDto paciente) {
+    public PacienteResponseDto createPaciente(PacienteDto paciente) {
         PacienteModel pacienteModel = modelMapper.map(paciente, PacienteModel.class);
         pacienteRepository.save(pacienteModel);
-        return paciente;
+        return modelMapper.map(pacienteModel, PacienteResponseDto.class);
     }
 
 

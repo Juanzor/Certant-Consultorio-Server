@@ -1,25 +1,21 @@
 package com.api.consultorio.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Setter
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-public class TurnoResponseDto {
-    private Integer id;
-    private ProfesionalDto profesional;
-    private PacienteDto paciente;
-    private ConsultorioDto consultorio;
-    private Boolean estado;
+public class TurnoUpdateDto {
     private LocalDate fecha;
     private LocalTime hora;
-
-
+    private Integer profesionalId;
+    private Integer pacienteId;
+    private Integer consultorioId;
+    private Boolean estado;
 }

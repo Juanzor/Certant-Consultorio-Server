@@ -34,12 +34,14 @@ public class TurnoValidator {
     }
 
 
-    public void validarHorario(LocalDateTime fechaHora) {
+    public void validarHorario(LocalTime hora) {
+        LocalDate fechaHoy = LocalDate.now();
+
         LocalTime horaInicio = LocalTime.of(8, 0);
         LocalTime horaFin = LocalTime.of(23, 0);
-        LocalTime horaTurno = fechaHora.toLocalTime();
+        LocalTime horaTurno = hora;
 
-        if (fechaHora.getDayOfWeek() == DayOfWeek.SUNDAY
+        if (fechaHoy.getDayOfWeek() == DayOfWeek.SUNDAY
                 || horaTurno.isBefore(horaInicio) || horaTurno.isAfter(horaFin)) {
             throw new RuntimeException("Horario de atencion de lunes a sabados de 8 a 23hs");
         }

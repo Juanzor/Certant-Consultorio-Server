@@ -2,6 +2,7 @@ package com.api.consultorio.controller;
 
 import com.api.consultorio.dto.TurnoDto;
 import com.api.consultorio.dto.TurnoResponseDto;
+import com.api.consultorio.dto.TurnoUpdateDto;
 import com.api.consultorio.exceptions.ResourceNotFoundException;
 import com.api.consultorio.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,12 @@ public class TurnoController {
         TurnoResponseDto turnoCancelado = turnoService.cancelTurno(id);
         return ResponseEntity.ok(turnoCancelado);
 
+    }
+
+    @PutMapping("/modificar/{id}")
+    public ResponseEntity<?> modificarTurno(@PathVariable Integer id, @RequestBody TurnoUpdateDto turnoUpdateDto) {
+        TurnoResponseDto turnoModificado = turnoService.updateTurno(id, turnoUpdateDto);
+        return ResponseEntity.ok(turnoModificado);
 
     }
 

@@ -43,20 +43,20 @@ CREATE TABLE turno (
                 foreign key (consultorio_id) references consultorio(consultorio_id)
 				 );
          
-         -- Insertar especialidades
+         -- Inserts especialidades
 INSERT INTO especialidad (nombre) VALUES
 ('Clínica Médica'),
 ('Dermatología'),
 ('Pediatría'),
 ('Cardiología');
 
--- Insertar consultorios
+-- Inserts consultorios
 INSERT INTO consultorio (nombre) VALUES
 ('Consultorio 1'),
 ('Consultorio 2'),
 ('Consultorio 3');
 
--- Insertar profesionales
+-- Inserts profesionales
 INSERT INTO profesional (nombre, apellido, dni, especialidad_id) VALUES
 ('Elena', 'Verdugo', 12345678, 1),  
 ('Diego', 'Echeverría', 23456789, 1), 
@@ -79,14 +79,14 @@ INSERT INTO profesional (nombre, apellido, dni, especialidad_id) VALUES
 ('Patricia', 'Carbajal', 78901235, 4);  
 
 
--- Insertar pacientes
+-- Inserts pacientes
 INSERT INTO paciente (nombre, apellido, dni) VALUES
 ('Ricardo', 'Salazar', 12345678),
 ('Laura', 'Mendoza', 23456789),
 ('Andrés', 'Cruz', 34567890),
 ('Sofía', 'Pinto', 45678901);
 
--- Insertar turnos 
+-- Inserts turnos
 INSERT INTO turno (fecha, hora, profesional_id, paciente_id, consultorio_id, estado) VALUES
 ('2024-10-13', '09:00:00', 1, 1, 1, true),
 ('2024-10-13', '10:00:00', 2, 2, 1, true),
@@ -97,28 +97,9 @@ INSERT INTO turno (fecha, hora, profesional_id, paciente_id, consultorio_id, est
 ('2024-10-16', '16:00:00', 7, 3, 1, true),
 ('2024-10-16', '17:00:00', 8, 4, 1, true);
         
-                 
-		
-
--- Seleccionar todas las especialidades
-SELECT * FROM especialidad;
-
--- Seleccionar todos los consultorios
-SELECT * FROM consultorio;
-
--- Seleccionar todos los profesionales y sus especialidades
-SELECT p.profesional_id, p.nombre, e.nombre AS especialidad 
-FROM profesional p
-JOIN especialidad e ON p.especialidad_id = e.especialidad_id;
-
--- Seleccionar todos los pacientes
-SELECT * FROM paciente;
-
--- Seleccionar todos los turnos
-SELECT * FROM turno;
 
 
--- Seleccionar todos los turnos con detalles de profesionales, pacientes y consultorios
+-- Probando select con todas las tablas
 SELECT t.turno_id, t.fecha, t.hora, e.nombre AS especialidad,
        p.nombre AS profesional_nombre, 
        pac.nombre AS paciente_nombre, pac.apellido AS paciente_apellido, 

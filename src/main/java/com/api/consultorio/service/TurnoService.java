@@ -42,10 +42,42 @@ public class TurnoService {
 
     }
 
+    public TurnoResponseDto updateTurno(Integer id, TurnoUpdateDto turnoUpdateDto) {
+
+        TurnoModel turnoModel = turnoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Turno no encontrado"));
+
+
+        turnoValidator.validarHorario(turnoUpdateDto.getHora());
+        turnoValidator.validarDisponibilidadPaciente(turnoUpdateDto.getPacienteId(), turnoUpdateDto.getFecha(), turnoUpdateDto.getHora());
+        turnoValidator.validarDisponibilidadProfesional(turnoUpdateDto.getProfesionalId(), turnoUpdateDto.getFecha(), turnoUpdateDto.getHora());
+        turnoValidator.validarDisponibilidadConsultorio(turnoUpdateDto.getConsultorioId(), turnoUpdateDto.getFecha(), turnoUpdateDto.getHora());
+
+
+        ProfesionalModel profesional = modelMapper.map(profesionalService.getProfesionalById(turnoUpdateDto.getProfesionalId()), ProfesionalModel.class);
+        PacienteModel paciente = modelMapper.map(pacienteService.getPacienteById(turnoUpdateDto.getPacienteId()), PacienteModel.class);
+        ConsultorioModel consultorio = modelMapper.map(consultorioService.getConsultorioById(turnoUpdateDto.getConsultorioId()), ConsultorioModel.class);
+
+
+        turnoModel.setFecha(turnoUpdateDto.getFecha());
+        turnoModel.setHora(turnoUpdateDto.getHora());
+
+        turnoModel.setProfesional(profesional);
+        turnoModel.setPaciente(paciente);
+        turnoModel.setConsultorio(consultorio);
+        turnoModel.setEstado(turnoUpdateDto.getEstado());
+
+
+        turnoRepository.save(turnoModel);
+
+        return modelMapper.map(turnoModel, TurnoResponseDto.class);
+    }
+
+
     public TurnoResponseDto createTurno(TurnoDto turno) {
         LocalTime horaTruncada = truncarHora(turno.getHora());
         turno.setHora(horaTruncada);
-        // turnoValidator.validarHorario(turno.getFechaHora());
+        turnoValidator.validarHorario(turno.getHora());
         turnoValidator.validarDisponibilidadPaciente(turno.getPacienteId(), turno.getFecha(), horaTruncada);
         turnoValidator.validarDisponibilidadProfesional(turno.getProfesionalId(), turno.getFecha(), horaTruncada);
         turnoValidator.validarDisponibilidadConsultorio(turno.getProfesionalId(), turno.getFecha(), horaTruncada);
@@ -124,6 +156,16 @@ public class TurnoService {
     }
 
     public TurnoModel prepareTurnoModel(TurnoDto turno) {
+
+        ProfesionalModel profesional = modelMapper.map(profesionalService.getProfesionalById(turno.getProfesionalId()), ProfesionalModel.class);
+        PacienteModel paciente = modelMapper.map(pacienteService.getPacienteById(turno.getPacienteId()), PacienteModel.class);
+        ConsultorioModel consultorio = modelMapper.map(consultorioService.getConsultorioById(turno.getConsultorioId()), ConsultorioModel.class);
+
+
+        return new TurnoModel(turno.getFecha(), turno.getHora(), profesional, paciente, consultorio);
+    }
+
+    public TurnoModel updateTurnoModel(TurnoUpdateDto turno) {
 
         ProfesionalModel profesional = modelMapper.map(profesionalService.getProfesionalById(turno.getProfesionalId()), ProfesionalModel.class);
         PacienteModel paciente = modelMapper.map(pacienteService.getPacienteById(turno.getPacienteId()), PacienteModel.class);

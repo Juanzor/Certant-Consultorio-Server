@@ -1,13 +1,17 @@
 package com.api.consultorio.controller;
 
 import com.api.consultorio.dto.PacienteDto;
+import com.api.consultorio.dto.PacienteResponseDto;
 import com.api.consultorio.service.PacienteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Validated
 @RestController
 @RequestMapping("/api/v1/pacientes")
 public class PacienteController {
@@ -20,8 +24,9 @@ public class PacienteController {
         return ResponseEntity.ok(pacienteService.getPacientes());
     }
 
+    // No funcionan las validaciones !!
     @PostMapping
-    ResponseEntity<PacienteDto> createPaciente(@RequestBody PacienteDto pacienteDto) {
+    ResponseEntity<?> createPaciente(@RequestBody @Valid PacienteDto pacienteDto) {
         return ResponseEntity.ok(pacienteService.createPaciente(pacienteDto));
     }
 
