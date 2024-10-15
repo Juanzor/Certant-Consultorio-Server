@@ -9,9 +9,9 @@
 * Postman
 * Intellij
 
-###  Ejecutar los scripts en Mysql Workbench que dejé en resources 
+###  1. Ejecutar los scripts en Mysql Workbench que dejé en resources 
 
-###  Configurar application.properties con datos locales:
+###  2. Configurar application.properties con datos locales:
 
 ```
 server.port=[puerto]
@@ -21,6 +21,7 @@ spring.datasource.password=[passwordUsuarioMysql]
 spring.jpa.hibernate.ddl-auto=update
 springdoc.swagger-ui.path=/swagger-ui.html
 ```
+###  * [Frontend en este repositorio]([https://vuelos-mern.onrender.com/ ](https://github.com/Juanzor/Certant-Consultorio-Client))
 
 ###  Para usar Swagger: `localhost:[puerto]/swagger-ui.html`
 
