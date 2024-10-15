@@ -20,13 +20,13 @@ public class PacienteService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<PacienteDto> getPacientes() {
+    public List<PacienteResponseDto> getPacientes() {
         List<PacienteModel> pacientes = pacienteRepository.findAll();
         if (pacientes.isEmpty()) {
             throw new ResourceNotFoundException("clientes");
         }
         return pacientes.stream()
-                .map(pacienteModel -> modelMapper.map(pacienteModel, PacienteDto.class))
+                .map(pacienteModel -> modelMapper.map(pacienteModel, PacienteResponseDto.class))
                 .collect(Collectors.toList());
 
     }

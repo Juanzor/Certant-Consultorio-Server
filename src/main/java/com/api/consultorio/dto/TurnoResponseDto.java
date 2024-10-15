@@ -15,7 +15,7 @@ import java.time.LocalTime;
 public class TurnoResponseDto {
     private Integer id;
     private ProfesionalDto profesional;
-    private PacienteDto paciente;
+    private PacienteResponseDto paciente;
     private ConsultorioDto consultorio;
     private Boolean estado;
     private LocalDate fecha;
