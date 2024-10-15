@@ -25,5 +25,17 @@ springdoc.swagger-ui.path=/swagger-ui.html
 
 ###  Para usar Swagger: `localhost:[puerto]/swagger-ui.html`
 
+### Al realizar un update en swagger realizarlo con este formato de ejemplo:
+
+```
+{
+  "fecha": "2024-10-15",
+  "hora":"07:00:00",
+  "profesionalId": 1,
+  "pacienteId": 1,
+  "consultorioId": 1,
+  "estado": false
+}
+```
                               
 	
